@@ -1,0 +1,37 @@
+-- Setting ffi
+local ffi = require "ffi";
+ffi.cdef[[
+	void* GetModuleHandleA(char const* moduleName);
+]]
+local h_exedit = ffi.cast("uintptr_t", ffi.C.GetModuleHandleA("exedit.auf"));
+local efpip = h_exedit + 0x1b2b20;
+local efpip2 = ffi.cast("uint32_t**", efpip);
+local efpip3 = ffi.cast("int16_t***", efpip);
+
+function get_buffer_stride()
+	return efpip2[0][0xec/4]; -- reading efpip->obj_line.
+end
+function get_obj_edit()
+	return efpip3[0][0xac/4]; -- reading efpip->obj_edit.
+end
+
+-- Getting stride width
+local obj_line = get_buffer_stride()
+-- Getting YC48
+local obj_edit = get_obj_edit()
+local obj_edit_ptr = ffi.cast("intptr_t", obj_edit)
+local obj_edit_ptr_num = tonumber(obj_edit_ptr)
+
+debug_print("Stride: " .. tostring(obj_line))
+debug_print("YC48 buffer pointer: " .. tostring(obj_edit))
+
+-- Getting width and height of AviUtl
+local data, w, h = obj.getpixeldata()
+debug_print("Width: " .. w .. ", Height: " .. h)
+
+debug_print("Loading example_halfLuminance")
+require("example_halfLuminance")
+
+debug_print("Calling half_Y function")
+example_halfLuminance.half_Y(w, h, obj_line, obj_edit_ptr_num)
+debug_print("Processing completed")

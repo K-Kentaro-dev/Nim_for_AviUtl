@@ -1,0 +1,6 @@
+debug_print("This is example_halfRGB")
+require("example_halfRGB")
+
+local data, w, h = obj.getpixeldata()
+example_halfRGB.half_RGB(data, w, h)
+obj.putpixeldata(data)

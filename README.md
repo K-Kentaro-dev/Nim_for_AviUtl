@@ -2,7 +2,7 @@ This is a library for developing AviUtl's dll script.
 
 How to install
 ```
-Wait for pull request for Nimble
+nimble install Nim_for_Aviutl
 ```
 
 How to use  

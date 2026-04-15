@@ -1,8 +1,8 @@
 import luanim51
-import Nim_for_Aviutl
+import Nim_for_AviUtl
 
-# (funcname)
-makeAviUtlfunc(half_Y):
+# function to be called from AviUtl
+makeAviUtlfunc():
   # process
   # example, halve the luminance
   proc half_Y(L: ptr lua_State): cint {.cdecl, exportc.} =

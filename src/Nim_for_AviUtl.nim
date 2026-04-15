@@ -2,19 +2,16 @@ import macros
 import strutils
 import os
 
-macro makeAviUtlfunc*(funcname: untyped, body: untyped): untyped =
-  # Extract the function name and validate it matches the expected funcname
-  let providedFuncName = body[0][0]
-  if $providedFuncName != $funcname:
-    error("Function name in definition must match the first argument to makeAviUtlfunc", providedFuncName)
+macro makeAviUtlfunc*(body: untyped): untyped =
+  # get func name
+  let funcname = body[0][0]
   
-
   # Convert function name and filename to strings
   let 
     funcNameStr = $funcname
     info = body.lineInfoObj
     fullPath = info.filename
-    fileNameWithExt = extractFilename(fullPath)  # パスからファイル名部分を取得
+    fileNameWithExt = extractFilename(fullPath)  # get filename from path
     fileNameStr = fileNameWithExt.splitFile.name
   # Create the emit code with replaced values
   var emitCode = """

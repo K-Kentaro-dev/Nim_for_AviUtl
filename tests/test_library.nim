@@ -2,7 +2,7 @@ import luanim51
 import Nim_for_Aviutl
 
 # (funcname)
-makeAviUtlfunc(macro_test):
+makeAviUtlfunc():
     proc macro_test(L: ptr lua_State): cint {.cdecl, exportc.} =
       return 1
 

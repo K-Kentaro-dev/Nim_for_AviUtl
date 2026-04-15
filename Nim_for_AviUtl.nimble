@@ -1,6 +1,6 @@
 # Package
 
-version       = "1.0.0"
+version       = "1.1.0"
 author        = "K.Kentaro"
 description   = "This is a tool to make AviUtl's dll script."
 license       = "MIT"

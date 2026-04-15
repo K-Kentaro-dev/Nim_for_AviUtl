@@ -12,7 +12,7 @@ import luanim51
 import Nim_for_Aviutl
 
 # (funcname)
-makeAviUtlfunc(example_func):
+makeAviUtlfunc():
     proc example_func(L: ptr lua_State): cint {.cdecl, exportc.} =
       return 1
 ```

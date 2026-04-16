@@ -11,7 +11,7 @@ This is the template for creating a DLL script.
 import luanim51
 import Nim_for_Aviutl
 
-# (funcname)
+# function to be called from AviUtl
 makeAviUtlfunc():
     proc example_func(L: ptr lua_State): cint {.cdecl, exportc.} =
       return 1
